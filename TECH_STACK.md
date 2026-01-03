@@ -29,7 +29,7 @@
 - Manually (Browser, Postman)
 - Automatic (Selenium, Cypress, JMeter, Appium)
 
-## Application Load Tester
+## Load Tester
 
 - Grafana K6
 
@@ -130,6 +130,7 @@
 
 - Kinesis Data Stream
 - Kinesis Firehose
+- Kinesis Analytics
 - AWS Athena
 - AWS Glue
 

@@ -1,6 +1,7 @@
 # Here is my learning plan and I have to master it no matter what:
 
 - Advanced technique for containerizing application (advance dockerfile, docker-compose). How do I containerized applications from infamous programming language and run it in local.
+- I really really want to use Bottlerocket OS in my EKS clusters
 - Explore self-manage github action architecture and deploy it in EKS
 - Explore about GitLab (how to administer it) and the GitLab runner. Deploy self-manage GitLab runner.
 - Setup CICD to deploy apps into EKS using github action and gitlab runner
@@ -12,4 +13,5 @@
 - I really really want to understand the Grafana, Prometheus, Alert manager, Loki, and Mimir in action.
 - I really really want to understand the ELK stack in action.
 - I really really want to understand the Otel in action.
--
+- I really really want to understand how to perform & write code for load test with Grafana K6
+- I really really want to know about various approachs to reduce cloud cost
