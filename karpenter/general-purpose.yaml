@@ -1,0 +1,53 @@
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  annotations:
+    karpenter.sh/nodepool-hash: "12393960163388511505"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"karpenter.sh/v1beta1","kind":"NodePool","metadata":{"annotations":{"kubernetes.io/description":"General purpose NodePool for generic workloads"},"name":"general-purpose"},"spec":{"disruption":{"consolidateAfter":"3600s","consolidationPolicy":"WhenEmpty","expireAfter":"720h"},"template":{"spec":{"nodeClassRef":{"name":"default"},"requirements":[{"key":"karpenter.sh/capacity-type","operator":"In","values":["spot"]},{"key":"kubernetes.io/arch","operator":"In","values":["amd64"]},{"key":"kubernetes.io/os","operator":"In","values":["linux"]},{"key":"karpenter.k8s.aws/instance-category","operator":"In","values":["c","m","t"]},{"key":"karpenter.k8s.aws/instance-generation","operator":"Gt","values":["2"]}]}}}}
+    kubernetes.io/description: General purpose NodePool for generic workloads
+  creationTimestamp: "2024-03-06T18:35:25Z"
+  generation: 5
+  name: general-purpose
+  resourceVersion: "643111752"
+  uid: 5dfb3160-dcf5-41a1-8cf0-c4ed29fbeaac
+spec:
+  disruption:
+    budgets:
+    - nodes: 10%
+    consolidateAfter: 3600s
+    consolidationPolicy: WhenEmpty
+    expireAfter: 720h
+  template:
+    spec:
+      nodeClassRef:
+        name: default
+      requirements:
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values:
+        - spot
+      - key: kubernetes.io/arch
+        operator: In
+        values:
+        - amd64
+      - key: kubernetes.io/os
+        operator: In
+        values:
+        - linux
+      - key: karpenter.k8s.aws/instance-category
+        operator: In
+        values:
+        - c
+        - m
+        - t
+      - key: karpenter.k8s.aws/instance-generation
+        operator: Gt
+        values:
+        - "2"
+status:
+  resources:
+    cpu: "2"
+    ephemeral-storage: 20893676Ki
+    memory: 8028612Ki
+    pods: "35"

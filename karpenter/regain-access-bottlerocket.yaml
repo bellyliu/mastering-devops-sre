@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: os
+  labels:
+    name: os
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: regain-access
+  namespace: os
+spec:
+  containers:
+  - name: regain-access
+    image: fedora
+    command: ["sleep", "infinity"]
+    volumeMounts:
+      - mountPath: /usr/bin/apiclient
+        name: apiclient
+        readOnly: true
+      - mountPath: /run/api.sock
+        name: apiserver-socket
+    securityContext:
+      seLinuxOptions:
+        level: s0
+        role: system_r
+        type: control_t
+        user: system_u
+  volumes:
+    - name: apiclient
+      hostPath:
+        path: /usr/bin/apiclient
+        type: File
+    - name: apiserver-socket
+      hostPath:
+        path: /run/api.sock
+        type: Socket

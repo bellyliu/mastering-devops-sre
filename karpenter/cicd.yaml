@@ -1,0 +1,55 @@
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  annotations:
+    karpenter.sh/nodepool-hash: "7111332247023187225"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"karpenter.sh/v1beta1","kind":"NodePool","metadata":{"annotations":{"kubernetes.io/description":"NodePool for cicd tools"},"name":"cicd"},"spec":{"disruption":{"consolidateAfter":"3600s","consolidationPolicy":"WhenEmpty"},"template":{"metadata":{"labels":{"app":"cicd"}},"spec":{"nodeClassRef":{"name":"cicd"},"requirements":[{"key":"karpenter.sh/capacity-type","operator":"In","values":["spot"]},{"key":"kubernetes.io/arch","operator":"In","values":["amd64"]},{"key":"kubernetes.io/os","operator":"In","values":["linux"]},{"key":"karpenter.k8s.aws/instance-category","operator":"In","values":["c","m","t"]},{"key":"karpenter.k8s.aws/instance-generation","operator":"Gt","values":["2"]}],"taints":[{"effect":"NoSchedule","key":"cicd","value":"true"}]}}}}
+    kubernetes.io/description: NodePool for cicd tools
+  creationTimestamp: "2024-07-15T07:36:18Z"
+  generation: 2
+  name: cicd
+  resourceVersion: "379554695"
+  uid: 2162b2dd-e804-413d-befc-6a00b694c700
+spec:
+  disruption:
+    budgets:
+    - nodes: 10%
+    consolidateAfter: 3600s
+    consolidationPolicy: WhenEmpty
+    expireAfter: 720h
+  template:
+    metadata:
+      labels:
+        app: cicd
+    spec:
+      nodeClassRef:
+        name: cicd
+      requirements:
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values:
+        - spot
+      - key: kubernetes.io/arch
+        operator: In
+        values:
+        - amd64
+      - key: kubernetes.io/os
+        operator: In
+        values:
+        - linux
+      - key: karpenter.k8s.aws/instance-category
+        operator: In
+        values:
+        - c
+        - m
+        - t
+      - key: karpenter.k8s.aws/instance-generation
+        operator: Gt
+        values:
+        - "2"
+      taints:
+      - effect: NoSchedule
+        key: cicd
+        value: "true"
+status: {}
