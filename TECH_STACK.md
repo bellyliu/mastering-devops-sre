@@ -31,12 +31,12 @@
 
 ## Load Tester
 
-- Grafana K6
+- Grafana K6 - BASIC
 
 ## Application Exposer
 
-- Nginx
-- Apache
+- Nginx - INTERMEDIATE
+- Apache - BASIC
 - Traefik
 - Kong
 - Ambassador App Gateway
@@ -45,25 +45,25 @@
 
 - Github Security (check dependency)
 - Renovate
-- Sonarqube
-- Trivy
-- OWASP Top 10
+- Sonarqube - BASIC
+- Trivy - BASIC
+- OWASP Top 10 - BASIC
 
 ## CICD
 
-- Gihub action
+- Gihub action - INTERMEDIATE
 - GitLab runner
-- Jenkins
-- AWS Code Build & Pipeline & Deploy
-- ArgoCD
+- Jenkins - INTERMEDIATE
+- AWS Code Build & Pipeline & Deploy - BASIC
+- ArgoCD - INTERMEDIATE
 
 ## Platform to run the application
 
-- Kubernetes
-- AWS ECS
-- AWS EC2
+- Kubernetes - BASIC
+- AWS ECS - BASIC
+- AWS EC2 - INTERMEDIATE
 - AWS Fargate
-- AWS Lambda
+- AWS Lambda - BASIC
 
 ## Observability
 
