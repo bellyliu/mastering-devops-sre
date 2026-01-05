@@ -161,3 +161,6 @@
 - Amazon SageMaker
 - MCP server
 - LangChain
+
+## Cloud and Kubernetes Native
+- Knative
