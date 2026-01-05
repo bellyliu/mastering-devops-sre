@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: "redis:8.4.0-alpine"
+    ports:
+      - 6379:6379
+  
+  database:
+    image: "postgres:18-alpine"
+    restart: always
+    shm_size: 512mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: fastapi
+      POSTGRES_PASSWORD: s3cur3p4ssw0rd
+      POSTGRES_DB: bookstore
+    volumes:
+      - db-data:/var/lib/postgresql
+
+volumes:
+  db-data:
