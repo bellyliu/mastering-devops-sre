@@ -5,10 +5,10 @@ from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from .database import get_db
-from .models import User
-from .schemas import TokenData
-from .config import get_settings
+from app.database import get_db
+from app.models import User
+from app.schemas import TokenData
+from app.config import get_settings
 
 settings = get_settings()
 
@@ -22,7 +22,20 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 
 def get_password_hash(password: str) -> str:
-    """Hash a password"""
+    """Hash a password (truncate to 72 bytes for bcrypt)"""
+    # Bcrypt has a 72 byte limit, truncate to ensure we don't exceed it
+    password_bytes = password.encode('utf-8')
+    if len(password_bytes) > 72:
+        # Truncate to 72 bytes, being careful not to split multi-byte characters
+        truncated = password_bytes[:72]
+        # Decode with error handling to avoid breaking on partial characters
+        while truncated:
+            try:
+                password = truncated.decode('utf-8')
+                break
+            except UnicodeDecodeError:
+                # Remove last byte and try again
+                truncated = truncated[:-1]
     return pwd_context.hash(password)
 
 
