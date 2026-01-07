@@ -1,4 +1,12 @@
 services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fastapi/postgresql
+    ports:
+      - 8000:8000
   redis:
     image: "redis:8.4.0-alpine"
     ports:
