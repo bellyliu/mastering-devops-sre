@@ -1,9 +1,9 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-from .. import crud, schemas
-from ..database import get_db, get_redis
-from ..auth import get_current_active_user
+from app import crud, schemas
+from app.database import get_db, get_redis
+from app.auth import get_current_active_user
 
 router = APIRouter(prefix="/books", tags=["Books"])
 
@@ -38,7 +38,7 @@ def read_books(
     return books
 
 
-@router.get("/{book_id}", response_model=schemas.BookResponse)
+@router.get("/{book_id}")
 def read_book(
     book_id: int,
     db: Session = Depends(get_db),

@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import List, Optional
-from . import models, schemas
-from .auth import get_password_hash
+from app import models, schemas
+from app.auth import get_password_hash
 import json
 
 
@@ -91,7 +91,7 @@ def get_book(db: Session, book_id: int, redis_client=None):
             "quantity": db_book.quantity,
             "category": db_book.category,
             "published_year": db_book.published_year,
-            "owner_id": db_book.owner_id,
+            "owner_id": db_book.owner_id
         }
         redis_client.setex(cache_key, 3600, json.dumps(book_dict))  # Cache for 1 hour
     
@@ -162,7 +162,6 @@ def update_book(
     # Invalidate cache
     if redis_client:
         redis_client.delete(f"book:{book_id}")
-        redis_client.delete("books:all")
     
     return db_book
 
