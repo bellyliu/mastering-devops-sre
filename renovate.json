@@ -1,34 +1,48 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":dependencyDashboard",
     ":rebaseStalePrs"
   ],
-  "labels": ["dependencies", "renovate"],
-
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
   "packageRules": [
     {
-      // Auto-merge patch updates (e.g., v1.0.1 -> v1.0.2)
-      "matchDatasources": ["pypi"],
-      "matchUpdateTypes": ["patch"],
+      "matchCategories": [
+        "docker"
+      ],
+      "enabled": true
+    },
+    {
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "automerge": true
     },
     {
-      // Group all Python minor/patch updates into one PR to reduce noise
-      "matchDatasources": ["pypi"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "groupName": "all-minor-patch-python"
     },
     {
-      // Specific rule for boto3/botocore to limit frequency
-      "matchPackageNames": ["boto3", "botocore"],
-      "schedule": ["before 5am on monday"]
+      "matchPackageNames": [
+        "boto3",
+        "botocore"
+      ],
+      "schedule": [
+        "before 5am on monday"
+      ]
     }
-  ],
-
-  // Enable Dockerfile updates (e.g. FROM python:3.9)
-  "docker": {
-    "enabled": true
-  }
+  ]
 }
