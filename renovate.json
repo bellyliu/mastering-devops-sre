@@ -6,32 +6,28 @@
     ":rebaseStalePrs"
   ],
   "labels": ["dependencies", "renovate"],
-  
-  // Python Specific Settings
-  "python": {
-    "fileMatch": ["^requirements\\.txt$", "^requirements/.*\\.txt$"]
-  },
-  
+
   "packageRules": [
     {
+      // Auto-merge patch updates (e.g., v1.0.1 -> v1.0.2)
       "matchDatasources": ["pypi"],
       "matchUpdateTypes": ["patch"],
       "automerge": true
     },
     {
-      // Group all minor/patch updates for Python packages to reduce noise
+      // Group all Python minor/patch updates into one PR to reduce noise
       "matchDatasources": ["pypi"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all-minor-patch-python"
     },
     {
-      // Specific rule for boto3 (AWS SDK) - it updates too often!
+      // Specific rule for boto3/botocore to limit frequency
       "matchPackageNames": ["boto3", "botocore"],
       "schedule": ["before 5am on monday"]
     }
   ],
-  
-  // If you use Dockerfiles with Python, this updates the base image
+
+  // Enable Dockerfile updates (e.g. FROM python:3.9)
   "docker": {
     "enabled": true
   }
