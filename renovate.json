@@ -1,6 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:base",
+    ":dependencyDashboard",
+    ":rebaseStalePrs"
+  ],
+  "labels": ["dependencies", "renovate"],
+  
+  // Python Specific Settings
+  "python": {
+    "fileMatch": ["^requirements\\.txt$", "^requirements/.*\\.txt$"]
+  },
+  
+  "packageRules": [
+    {
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      // Group all minor/patch updates for Python packages to reduce noise
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all-minor-patch-python"
+    },
+    {
+      // Specific rule for boto3 (AWS SDK) - it updates too often!
+      "matchPackageNames": ["boto3", "botocore"],
+      "schedule": ["before 5am on monday"]
+    }
+  ],
+  
+  // If you use Dockerfiles with Python, this updates the base image
+  "docker": {
+    "enabled": true
+  }
 }
