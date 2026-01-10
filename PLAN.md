@@ -16,3 +16,4 @@
 - I really really want to understand the Otel in action.
 - I really really want to understand how to perform & write code for load test with Grafana K6 - BASIC
 - I really really want to know about various approachs to reduce cloud cost
+- I really really want to understand and use Renovate Bots or Github Dependant Bot - DONE
