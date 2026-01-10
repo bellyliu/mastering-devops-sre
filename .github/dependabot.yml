@@ -1,0 +1,75 @@
+version: 2
+
+updates:
+  # -----------------------------------------------------------
+  # 1. GLOBAL GITHUB ACTIONS (Best Practice)
+  # -----------------------------------------------------------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # Group all action updates into one PR
+      actions-dependencies:
+        patterns:
+          - "*"
+
+  # -----------------------------------------------------------
+  # 2. PYTHON APPS (Manual entry required for each app)
+  # -----------------------------------------------------------
+  
+  # FastAPI - MongoDB Service
+  - package-ecosystem: "pip"
+    directory: "/applications/fast-api/mongodb/app"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Asia/Jakarta"
+    # Grouping: Bundles all minor/patch updates into one PR
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # FastAPI - MySQL Service
+  - package-ecosystem: "pip"
+    directory: "/applications/fast-api/mysql/app"
+    schedule:
+      interval: "weekly"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+
+  # FastAPI - PostgreSQL Service
+  - package-ecosystem: "pip"
+    directory: "/applications/fast-api/postgresql"
+    schedule:
+      interval: "weekly"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+  
+  # RabbitMQ PubSub Service
+  - package-ecosystem: "pip"
+    directory: "/applications/fast-api/rabbitmq-pubsub"
+    schedule:
+      interval: "weekly"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+
+  # -----------------------------------------------------------
+  # 3. DOCKER FILES
+  # -----------------------------------------------------------
+  
+  # PostgreSQL Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/applications/fast-api/postgresql"
+    schedule:
+      interval: "weekly"
