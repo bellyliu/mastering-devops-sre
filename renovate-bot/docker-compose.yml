@@ -1,6 +1,6 @@
 services:
   renovate:
-    image: renovate/renovate:42.76
+    image: renovate/renovate:42.75
     volumes:
       - ./config.js:/usr/src/app/config.js
     env_file:
