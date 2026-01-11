@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
 from typing import Optional
+import hashlib
+import bcrypt
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
@@ -12,31 +13,39 @@ from app.config import get_settings
 
 settings = get_settings()
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 
+def _prepare_password(password: str) -> bytes:
+    """
+    Pre-hash password with SHA256 to handle bcrypt's 72-byte limit.
+    
+    This is a recommended security practice that:
+    - Allows passwords of any length
+    - Produces a fixed-length input for bcrypt (64 hex characters = 64 bytes)
+    - Maintains security through the combination of SHA256 + bcrypt
+    """
+    return hashlib.sha256(password.encode('utf-8')).hexdigest().encode('utf-8')
+
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verify a password against its hash"""
-    return pwd_context.verify(plain_password, hashed_password)
+    """Verify a password against its hash using bcrypt directly"""
+    prepared_password = _prepare_password(plain_password)
+    return bcrypt.checkpw(prepared_password, hashed_password.encode('utf-8'))
 
 
 def get_password_hash(password: str) -> str:
-    """Hash a password (truncate to 72 bytes for bcrypt)"""
-    # Bcrypt has a 72 byte limit, truncate to ensure we don't exceed it
-    password_bytes = password.encode('utf-8')
-    if len(password_bytes) > 72:
-        # Truncate to 72 bytes, being careful not to split multi-byte characters
-        truncated = password_bytes[:72]
-        # Decode with error handling to avoid breaking on partial characters
-        while truncated:
-            try:
-                password = truncated.decode('utf-8')
-                break
-            except UnicodeDecodeError:
-                # Remove last byte and try again
-                truncated = truncated[:-1]
-    return pwd_context.hash(password)
+    """
+    Hash a password using SHA256 + bcrypt.
+    
+    Pre-hashing with SHA256 ensures we never exceed bcrypt's 72-byte limit
+    while allowing users to have passwords of any length.
+    """
+    prepared_password = _prepare_password(password)
+    # Generate salt and hash with bcrypt directly
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(prepared_password, salt)
+    return hashed.decode('utf-8')
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):

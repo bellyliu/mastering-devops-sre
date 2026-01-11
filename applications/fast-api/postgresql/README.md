@@ -42,7 +42,7 @@ postgresql/
 - `id`: Primary key
 - `username`: Unique username
 - `email`: Unique email
-- `hashed_password`: Bcrypt hashed password
+- `hashed_password`: SHA256+Bcrypt hashed password (see Security section)
 - `full_name`: User's full name
 - `is_active`: Account status
 - `created_at`: Creation timestamp
