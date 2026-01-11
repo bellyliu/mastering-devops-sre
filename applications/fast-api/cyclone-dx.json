@@ -1,0 +1,366 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:57aff8ba-2e72-4776-9705-942a3fbaa3a2",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-01-11T14:36:50+00:00",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "group": "aquasecurity",
+          "name": "trivy",
+          "version": "0.65.0"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "6ee35df0-9e2d-4caf-a5ed-bccd26e152cf",
+      "type": "application",
+      "name": "applications/fast-api/postgresql",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:SchemaVersion",
+          "value": "2"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "dcdb4d3c-bf77-497b-bad1-16db0a1907ae",
+      "type": "application",
+      "name": "requirements.txt",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/async-timeout@5.0.1",
+      "type": "library",
+      "name": "async-timeout",
+      "version": "5.0.1",
+      "purl": "pkg:pypi/async-timeout@5.0.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/bcrypt@5.0.0",
+      "type": "library",
+      "name": "bcrypt",
+      "version": "5.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/bcrypt@5.0.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/email-validator@2.3.0",
+      "type": "library",
+      "name": "email-validator",
+      "version": "2.3.0",
+      "purl": "pkg:pypi/email-validator@2.3.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/fastapi@0.128.0",
+      "type": "library",
+      "name": "fastapi",
+      "version": "0.128.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/fastapi@0.128.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/passlib@1.7.4",
+      "type": "library",
+      "name": "passlib",
+      "version": "1.7.4",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/passlib@1.7.4",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/psycopg2-binary@2.9.11",
+      "type": "library",
+      "name": "psycopg2-binary",
+      "version": "2.9.11",
+      "purl": "pkg:pypi/psycopg2-binary@2.9.11",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/pydantic-settings@2.12.0",
+      "type": "library",
+      "name": "pydantic-settings",
+      "version": "2.12.0",
+      "purl": "pkg:pypi/pydantic-settings@2.12.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/pydantic@2.12.5",
+      "type": "library",
+      "name": "pydantic",
+      "version": "2.12.5",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/pydantic@2.12.5",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/python-dotenv@1.2.1",
+      "type": "library",
+      "name": "python-dotenv",
+      "version": "1.2.1",
+      "purl": "pkg:pypi/python-dotenv@1.2.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/python-jose@3.5.0",
+      "type": "library",
+      "name": "python-jose",
+      "version": "3.5.0",
+      "purl": "pkg:pypi/python-jose@3.5.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/python-multipart@0.0.21",
+      "type": "library",
+      "name": "python-multipart",
+      "version": "0.0.21",
+      "purl": "pkg:pypi/python-multipart@0.0.21",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/redis@7.1.0",
+      "type": "library",
+      "name": "redis",
+      "version": "7.1.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/redis@7.1.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/sqlalchemy@2.0.45",
+      "type": "library",
+      "name": "sqlalchemy",
+      "version": "2.0.45",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/sqlalchemy@2.0.45",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:pypi/uvicorn@0.40.0",
+      "type": "library",
+      "name": "uvicorn",
+      "version": "0.40.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/uvicorn@0.40.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "pip"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "6ee35df0-9e2d-4caf-a5ed-bccd26e152cf",
+      "dependsOn": [
+        "dcdb4d3c-bf77-497b-bad1-16db0a1907ae"
+      ]
+    },
+    {
+      "ref": "dcdb4d3c-bf77-497b-bad1-16db0a1907ae",
+      "dependsOn": [
+        "pkg:pypi/async-timeout@5.0.1",
+        "pkg:pypi/bcrypt@5.0.0",
+        "pkg:pypi/email-validator@2.3.0",
+        "pkg:pypi/fastapi@0.128.0",
+        "pkg:pypi/passlib@1.7.4",
+        "pkg:pypi/psycopg2-binary@2.9.11",
+        "pkg:pypi/pydantic-settings@2.12.0",
+        "pkg:pypi/pydantic@2.12.5",
+        "pkg:pypi/python-dotenv@1.2.1",
+        "pkg:pypi/python-jose@3.5.0",
+        "pkg:pypi/python-multipart@0.0.21",
+        "pkg:pypi/redis@7.1.0",
+        "pkg:pypi/sqlalchemy@2.0.45",
+        "pkg:pypi/uvicorn@0.40.0"
+      ]
+    },
+    {
+      "ref": "pkg:pypi/async-timeout@5.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/bcrypt@5.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/email-validator@2.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/fastapi@0.128.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/passlib@1.7.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/psycopg2-binary@2.9.11",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/pydantic-settings@2.12.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/pydantic@2.12.5",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/python-dotenv@1.2.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/python-jose@3.5.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/python-multipart@0.0.21",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/redis@7.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/sqlalchemy@2.0.45",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:pypi/uvicorn@0.40.0",
+      "dependsOn": []
+    }
+  ],
+  "vulnerabilities": []
+}
