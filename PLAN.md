@@ -13,7 +13,7 @@
 - I really really want to understand how to monitor the EKS cluster using cloudwatch agent.
 - I really really want to understand the Grafana, Prometheus, Alert manager, Loki, and Mimir in action.
 - I really really want to understand the ELK stack in action.
-- I really really want to understand the Otel in action.
+- I really really want to understand the Otel in action in microservices and Lambda - IN PROGRESS
 - I really really want to understand how to perform & write code for load test with Grafana K6 - BASIC
 - I really really want to know about various approachs to reduce cloud cost
 - I really really want to understand and use Renovate Bots or Github Dependant Bot - DONE
