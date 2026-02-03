@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from .routers import auth, books
+from .tracing import configure_opentelemetry
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -11,6 +12,9 @@ app = FastAPI(
     description="A comprehensive Book Store API built with FastAPI and PostgreSQL",
     version="1.0.0"
 )
+
+# Configure OpenTelemetry - MUST be done before adding routes
+configure_opentelemetry(app, service_name="bookstore-api")
 
 # CORS middleware
 app.add_middleware(

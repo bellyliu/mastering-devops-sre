@@ -4,9 +4,11 @@ from sqlalchemy.orm import Session
 from app import crud, schemas
 from app.database import get_db, get_redis
 from app.auth import get_current_active_user
+from app.tracing import get_tracer
+from opentelemetry import trace
 
 router = APIRouter(prefix="/books", tags=["Books"])
-
+tracer = get_tracer(__name__)
 
 @router.post("/", response_model=schemas.BookResponse, status_code=status.HTTP_201_CREATED)
 def create_book(
@@ -45,6 +47,9 @@ def read_book(
     redis_client = Depends(get_redis)
 ):
     """Get a specific book by ID (no authentication required)"""
+    current_span = trace.get_current_span()
+    current_span.set_attribute("book.id", book_id)
+
     db_book = crud.get_book(db=db, book_id=book_id, redis_client=redis_client)
     if db_book is None:
         raise HTTPException(status_code=404, detail="Book not found")

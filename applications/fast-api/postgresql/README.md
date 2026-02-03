@@ -1,6 +1,6 @@
 # Book Store API - PostgreSQL
 
-A comprehensive Book Store backend API built with FastAPI and PostgreSQL, featuring authentication, CRUD operations, and Redis caching.
+A comprehensive Book Store backend API built with FastAPI and PostgreSQL, featuring authentication, CRUD operations, Redis caching, and distributed tracing with OpenTelemetry.
 
 ## Features
 
@@ -11,6 +11,7 @@ A comprehensive Book Store backend API built with FastAPI and PostgreSQL, featur
 - **Search & Filter**: Search books by title/author, filter by category
 - **Database**: PostgreSQL with SQLAlchemy ORM
 - **API Documentation**: Auto-generated Swagger UI and ReDoc
+- **🆕 Distributed Tracing**: OpenTelemetry + Jaeger for observability
 
 ## Architecture
 
@@ -27,12 +28,17 @@ postgresql/
 │   ├── schemas.py           # Pydantic schemas
 │   ├── crud.py              # CRUD operations
 │   ├── auth.py              # Authentication logic
+│   ├── tracing.py           # 🆕 OpenTelemetry configuration
 │   └── routers/
 │       ├── __init__.py
 │       ├── auth.py          # Authentication endpoints
 │       └── books.py         # Book endpoints
 ├── requirements.txt
+├── docker-compose.yaml      # Includes Jaeger service
 ├── .env.example
+├── OTEL_INTRODUCTION.md     # 🆕 OpenTelemetry concepts guide
+├── OTEL_IMPLEMENTATION_GUIDE.md  # 🆕 Implementation guide
+├── OTEL_QUICKSTART.md       # 🆕 Quick start guide
 └── README.md
 ```
 
@@ -188,13 +194,33 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 ## Running the Application
 
-### Prerequisites
+### Option 1: Docker Compose (Recommended)
 
+This includes PostgreSQL, Redis, and Jaeger for distributed tracing:
+
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f api
+
+# Stop all services
+docker-compose down
+```
+
+**Services Available:**
+- **API**: http://localhost:8000
+- **Jaeger UI**: http://localhost:16686 (Distributed Tracing)
+- **PostgreSQL**: localhost:5432
+- **Redis**: localhost:6379
+
+### Option 2: Local Development
+
+Prerequisites:
 1. PostgreSQL server running
 2. Redis server running
-3. Python 3.8+
-
-### Installation
+3. Python 3.11+
 
 ```bash
 # Create virtual environment
@@ -266,6 +292,56 @@ app.add_middleware(
     allow_headers=["*"],
 )
 ```
+
+## 🔍 Distributed Tracing with OpenTelemetry
+
+This application includes comprehensive distributed tracing using OpenTelemetry and Jaeger.
+
+### What Gets Traced
+
+✅ **All HTTP Requests**: Method, path, status code, duration  
+✅ **Database Queries**: SQL statements, query duration, connection info  
+✅ **Redis Operations**: Commands (GET, SET), key names, duration  
+✅ **Authentication**: JWT creation, password verification, user lookups  
+
+### Quick Start
+
+1. **Start Services** (including Jaeger):
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Generate Traffic**:
+   ```bash
+   curl http://localhost:8000/health
+   curl http://localhost:8000/books/
+   ```
+
+3. **View Traces**: http://localhost:16686
+
+### Example Trace
+
+```
+POST /books/ (Total: 245ms)
+├─ authenticate_user (85ms)
+│  └─ SELECT FROM users (PostgreSQL) (40ms)
+├─ validate_book_data (5ms)
+├─ INSERT INTO books (PostgreSQL) (120ms)
+└─ cache_invalidation (Redis) (25ms)
+```
+
+### Documentation
+
+- **📚 Concepts**: [OTEL_INTRODUCTION.md](OTEL_INTRODUCTION.md) - Complete guide to OpenTelemetry and distributed tracing
+- **⚙️ Implementation**: [OTEL_IMPLEMENTATION_GUIDE.md](OTEL_IMPLEMENTATION_GUIDE.md) - Detailed implementation guide with code examples
+- **🚀 Quick Start**: [OTEL_QUICKSTART.md](OTEL_QUICKSTART.md) - Get started in 3 steps
+
+### Benefits
+
+- **Performance Debugging**: Identify slow operations
+- **Error Investigation**: Trace failed requests
+- **Dependency Visualization**: See service interactions
+- **Bottleneck Detection**: Find optimization opportunities
 
 ## Testing with cURL
 

@@ -7,10 +7,19 @@ services:
     image: fastapi/postgresql
     ports:
       - 8000:8000
+    networks:
+      - bookstore-network
+    depends_on:
+      - database
+      - redis
+      - jaeger
+
   redis:
     image: "redis:8.4.0-alpine"
     ports:
       - 6379:6379
+    networks:
+      - bookstore-network
   
   database:
     image: "postgres:18-alpine"
@@ -24,6 +33,23 @@ services:
       POSTGRES_DB: bookstore
     volumes:
       - db-data:/var/lib/postgresql
+    networks:
+      - bookstore-network
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.76.0
+    container_name: jaeger
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4318:4318"    # OTLP HTTP receiver
+    networks:
+      - bookstore-network
+
+networks:
+  bookstore-network:
+    driver: bridge
 
 volumes:
   db-data:
