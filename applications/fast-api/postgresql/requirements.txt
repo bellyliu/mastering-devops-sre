@@ -1,10 +1,10 @@
 fastapi==0.128.0
 uvicorn[standard]==0.40.0
-sqlalchemy==2.0.45
+sqlalchemy==2.0.46
 psycopg2-binary==2.9.11
 python-jose[cryptography]==3.5.0
 bcrypt==5.0.0
-python-multipart==0.0.21
+python-multipart==0.0.22
 redis==7.1.0
 pydantic==2.12.5
 pydantic-settings==2.12.0
@@ -13,15 +13,15 @@ email-validator==2.3.0
 async-timeout==5.0.1
 
 # OpenTelemetry Core
-opentelemetry-api==1.29.0
-opentelemetry-sdk==1.29.0
+opentelemetry-api==1.39.1
+opentelemetry-sdk==1.39.1
 
 # OpenTelemetry Instrumentation
-opentelemetry-instrumentation==0.50b0
-opentelemetry-instrumentation-fastapi==0.50b0
-opentelemetry-instrumentation-sqlalchemy==0.50b0
-opentelemetry-instrumentation-redis==0.50b0
-opentelemetry-instrumentation-psycopg2==0.50b0
+opentelemetry-instrumentation==0.60b1
+opentelemetry-instrumentation-fastapi==0.60b1
+opentelemetry-instrumentation-sqlalchemy==0.60b1
+opentelemetry-instrumentation-redis==0.60b1
+opentelemetry-instrumentation-psycopg2==0.60b1
 
 # OTLP Exporter
-opentelemetry-exporter-otlp-proto-http==1.29.0
+opentelemetry-exporter-otlp-proto-http==1.39.1
