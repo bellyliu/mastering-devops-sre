@@ -21,3 +21,4 @@
 - I really really want to understand and create FastAPI microservice boilerplate
 - I really really want to understand Argo echosystem such like ArgoCD, Workflow, Events, and Rollout
 - I really really want to understand and use Clickhouse and HyperDX UI for observability
+- I really really want to understand and implement multi-arch container build
