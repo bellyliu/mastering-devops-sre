@@ -20,7 +20,7 @@ updates:
   
   # FastAPI - MongoDB Service
   - package-ecosystem: "pip"
-    directory: "/applications/fast-api/mongodb/app"
+    directory: "/applications/fast-api/mongodb/"
     schedule:
       interval: "weekly"
       day: "monday"
@@ -36,7 +36,7 @@ updates:
 
   # FastAPI - MySQL Service
   - package-ecosystem: "pip"
-    directory: "/applications/fast-api/mysql/app"
+    directory: "/applications/fast-api/mysql/"
     schedule:
       interval: "weekly"
     groups:
